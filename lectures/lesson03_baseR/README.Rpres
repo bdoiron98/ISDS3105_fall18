@@ -160,7 +160,7 @@ A list is a 1D collection of heterogeneous elements. Heterogeneitiy refers to bo
 
 ```{r}
 myList <- list(1:3, "a", c(TRUE, FALSE, TRUE), list(letters, c(2, 6)))
-typeof(myList)
+sttypeof(myList)
 str(myList, max.level = 1)
 ```
 

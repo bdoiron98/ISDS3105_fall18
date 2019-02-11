@@ -14,8 +14,17 @@
 
 #' Complete to the following tasks and push the responses to your GitHub:
 #' Create a character vector `family` with your family members' names
+
+family <- c("Turenne","Chandler","Christine")
+
 #' Create a vector `birth` with their birth years
+
+birth <- c(1960,1994,1964)
+
 #' Create another vector `age` with your family members' ages (calculated using `birth`)
+
+age <- 2019 - birth
+
 #' Use `typeof()` to make sure that `family`, `birth`, and `age` are the appropriate type (character, integer/double, integer/double)
 #' Use `names()` to name the elements of `age` with the family members' names from `family`
 #' Use inline code `r ##` to print your name and age (using indexing)
