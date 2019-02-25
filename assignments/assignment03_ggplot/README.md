@@ -15,7 +15,7 @@ report.
     description of the dataset) using *inline code* to show the variable
     names.
 3.  Plot a dot chart of premiums by losses. Map the count of drivers to
-    the size of the dots.
+    the size of the dots
 4.  Test what values from `state` are equal to “Louisiana” and assign
     the output to a new variable called \`Louisiana’ (logical)
 5.  Map the variable “Louisiana” to `color`. That way, the dot referring
@@ -42,3 +42,11 @@ report.
 <!-- end list -->
 
 10. Mute the code for both charts and add a title to both. Knit to html.
+
+
+
+
+ggplot()+
+  geom_dotplot(data = bad_drivers, aes(x = 'insurance_premiums', y = 'losses'), binaxis = 'y', stackdir = 'center')
+
+

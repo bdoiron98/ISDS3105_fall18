@@ -35,22 +35,26 @@ ggplot(data = freqCasualties, aes(x = class, y = n, fill = gender)) +
 #1. Replicate the above using selfiesCasualties and geom_bar() instead of geom_col. 
 
 ggplot(data = selfiesCasualties) +
-  geom_bar(...)
+  geom_bar(aes(x = class, fill = gender))
 
 
 #2. Note that geom_col() is just a wrapper for geom_bar(stat = 'identity') 
 #' Change the default stat to 'identity' and 
 #' replicate the above chart with geom_bar and the dataset `freqCausalties`
 
-ggplot(data = freqCausalties) +
-  geom_bar(...)
-
+ggplot(data = freqCasualties) +
+  geom_bar(stat = 'identity', aes(x = class, y = n, fill = gender))
 
 #3. Read the documentation to learn how to plot proportions 
 #' instead of counts with `geom_bar`
 
 ggplot(data = selfiesCasualties) +
-  geom_bar(aes( ... ), position = 'dodge')
+  geom_bar(aes(x = class, y = ..prop.., fill = gender, group = gender ), position = 'dodge')
+
+
+ggplot(mpg, aes(class))
+# Number of cars in each class:
+g + geom_bar()
 
 ```
 
@@ -68,6 +72,8 @@ dt <- read_csv('https://raw.githubusercontent.com/DarioBoh/ISDS3105_fall18/maste
 glimpse(dt)
 
 #2. Plot a barchart of the counts of graduates by college. Map the bar-fill to gender.
+ggplot()+
+  geom_bar(data = dt, aes(x = College, y = ..prop.., fill = Sex, group = Sex), position = 'fill')
 
 
 ```
@@ -96,8 +102,9 @@ Facets allow to replicate a plot splitting data by a categorical variable. For i
 
 ```{r}
 ggplot(data =dt) +
- geom_bar(aes(x = College, fill = Sex)) +       #plot a count of students in each
-  facet_wrap(~ Ethnicity, scales = 'free')
+ geom_bar(aes(x = Ethnicity, fill = Sex)) +       #plot a count of students in each
+  facet_wrap(Sex ~ College, scales = 'free') +
+  labs(title = "New plot title", subtitle = "A subtitle", caption = 'data from www.lsu.edu')
 ```
 
 
@@ -119,7 +126,9 @@ To pick colors, you can sue rgb, hex or [color names]((http://www.stat.columbia.
 ```{r}
 ggplot(data = dt) +
   geom_bar(aes(College, fill = Sex)) +
-  scale_fill_manual(values  =  ... )
+  scale_fill_brewer(palette = 'Accent') +
+    theme(axis.text.x = element_text(angle = 45, hjust = 1), 
+        panel.background = element_blank())
 #  OR (ALTERNATIVELY) change the colors usig :     
 #' scale_fill_brewer(type = ..., palette = ...)
 #' scale_fill_brewer(palette = "Greens", name = 'Gender')
@@ -138,7 +147,10 @@ ggplot2 uses default names for the scales of the mapped variables. You can chang
 ```{r}
 ggplot(data = dt) +
   geom_bar(aes(College, fill = Sex))  +
-  scale_x_discrete(name = 'College Abbreviations') 
+  scale_x_discrete(name = 'College Abbreviations') +
+  scale_fill_discrete(name = "Gender", labels = c("Female", "Male") ) +
+  theme(legend.position = "bottom")
+
 
 #use the below function to change the legend title into "gender" the legend values into 'Male' and 'Female'
 #  scale_fill_discrete(name = ... , labels =  ... ) 

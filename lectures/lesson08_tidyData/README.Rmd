@@ -42,9 +42,11 @@ gather(sn_users, key = 'socialNet', value = 'Mil.Users', twitter, facebook) #' k
 Use the output from the `gather()` above to plot a line chart including both twitter and facebook data.
 
 ```{r}
-tidy_sn_user <- gather(....)
-ggpolot(...) +
-  geom_line(...)
+tidy_sn_user <- gather(sn_users, key = 'socialNet', value = "Mil.Users", twitter, facebook)
+ggplot() +
+  geom_line(data = tidy_sn_user, aes(x = year, y = Mil.Users, colour = socialNet )) 
+  
+
 ```
 
 Another example of untidy dataset is `untidyReview` (a dataset of online review ratings). Do you see why `untidyReview` is untidy? For instance, suppose we want to plot the distribution or ratings for each attributes (reviewOverall, reviewCleanliness, etc...) with `geom_bar()` and facets. How many/what variables to you need?
